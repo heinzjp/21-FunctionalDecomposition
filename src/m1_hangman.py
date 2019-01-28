@@ -41,13 +41,15 @@ def change_board(word, guess, board):
     return board
 
 
-def check_guess(word, guess, n):
+def check_guess(word, guess, n, board):
     for k in range(len(word)):
         if guess == word[k]:
             print('Good Guess!')
             print()
             return True
+    print()
     print('Sorry there is no letter', guess, 'in the secret word.')
+    print_board(board)
     if n > 1:
         print('You still have ', n - 1, ' unsuccessful guesses left before you LOSE the game!')
     print()
@@ -78,7 +80,7 @@ def main():
     n = int(input('How many unsuccessful choices do you want to allow yourself? '))
     while True:
         guess = str(input('What letter do you want to try? '))
-        answer = check_guess(word, guess, n)
+        answer = check_guess(word, guess, n, board)
         if answer:
             board = change_board(word, guess, board)
             print_board(board)
